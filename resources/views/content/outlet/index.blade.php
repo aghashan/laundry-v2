@@ -13,28 +13,25 @@
 
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Alamat</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
+                        @foreach ($outlets as $key => $outlet)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $outlet->name }}</td>
+                                <td>{{ $outlet->alamat }}</td>
+                                <td>61</td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
-                    </table>
 
                 </x-card_table>
 

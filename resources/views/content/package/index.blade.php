@@ -13,28 +13,31 @@
 
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Category</th>
+                            <th>Harga</th>
+                            <th>Durasi</th>
+                            <th>Mininal Order</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
+                        @foreach ($packages as $key => $package)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $package->name }} </td>
+                                <td>{{ $package->categories->name }}</td>
+                                <td>{{ $package->harga }}</td>
+                                <td>{{ $pckage->durasi }}</td>
+                                <td>{{ $paclage->min_order }}</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
-                    </table>
 
                 </x-card_table>
 
