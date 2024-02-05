@@ -29,10 +29,10 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $package->name }} </td>
-                                <td>{{ $package->categories->name }}</td>
+                                <td>{{ $package->category->name }}</td>
                                 <td>{{ $package->harga }}</td>
-                                <td>{{ $pckage->durasi }}</td>
-                                <td>{{ $paclage->min_order }}</td>
+                                <td>{{ $package->durasi }}</td>
+                                <td>{{ $package->min_order }}</td>
                                 <td>2011/04/25</td>
                             </tr>
                         @endforeach

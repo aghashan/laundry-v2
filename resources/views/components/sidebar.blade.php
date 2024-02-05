@@ -10,7 +10,7 @@
         <hr class="sidebar-divider my-0">
 
         <x-nav_item :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">
-            <a class="nav-link" href="dashboard">
+            <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>

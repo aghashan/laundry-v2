@@ -16,6 +16,7 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Alamat</th>
+                            <th>No Telepon</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -27,6 +28,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $outlet->name }}</td>
                                 <td>{{ $outlet->alamat }}</td>
+                                <td>{{$outlet->no_tlp}}</td>
                                 <td>61</td>
                             </tr>
                         @endforeach

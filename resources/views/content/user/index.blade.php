@@ -3,7 +3,7 @@
     <div class="container-fluid py-3">
         <div>
 
-            <x-add_button>{{ route('categories.add') }}</x-add_button>
+            <x-add_button>{{ route('users.add') }}</x-add_button>
 
             <div class="card shadow-sm">
 
@@ -27,7 +27,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->outlet_id }}</td>
-                                <td>61</td>
+                                <td>belum ada role broo</td>
                                 <td>$320,800</td>
                             </tr>
                         @endforeach

@@ -8,18 +8,41 @@
 
             <div class="card-body">
 
-                <form action="">
+                <form action="{{ route('packages.store') }}" method="POST">
+
+                    @csrf
 
                     <div class="mb-4">
-                        <label for="name" class="form-label fw-bold">Name</label>
-                        <input type="text" class="form-control" name="" id="name">
+                        <label for="name" class="form-label font-weight-bold">Name</label>
+                        <input type="text" class="form-control" name="name" id="name">
                     </div>
 
-                    <x-right_position>
-                        <button class="btn btn-primary font-weight-bold">
-                            Submit
-                        </button>
-                    </x-right_position>
+                    <div class="mb-4">
+                        <label for="" class="form-label font-weight-bold">Category</label>
+                        <select class=" form-control" aria-label="Default select example" name="category_id">
+                            <option></option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="name" class="form-label font-weight-bold">Harga</label>
+                        <input type="text" class="form-control" name="harga" id="name">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="name" class="form-label font-weight-bold">Durasi</label>
+                        <input type="text" class="form-control" name="durasi" id="name">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="name" class="form-label font-weight-bold">Minimal Order</label>
+                        <input type="text" class="form-control" name="min_order" id="name">
+                    </div>
+
+                    <x-submit_button></x-submit_button>
 
                 </form>
 

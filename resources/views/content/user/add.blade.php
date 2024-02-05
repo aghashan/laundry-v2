@@ -8,18 +8,31 @@
 
             <div class="card-body">
 
-                <form action="">
+                <form action="{{ route('users.store') }}" method="POST">
+
+                    @csrf
 
                     <div class="mb-4">
                         <label for="name" class="form-label fw-bold">Name</label>
-                        <input type="text" class="form-control" name="" id="name">
+                        <input type="text" class="form-control" name="name" id="name">
                     </div>
 
-                    <x-right_position>
-                        <button class="btn btn-primary font-weight-bold">
-                            Submit
-                        </button>
-                    </x-right_position>
+                    <div class="mb-4">
+                        <label for="" class="form-label font-weight-bold">Outlet</label>
+                        <select class=" form-control" aria-label="Default select example" name="outlet_id">
+                            <option></option>
+                            @foreach ($outlets as $outlet)
+                                <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="name" class="form-label fw-bold">Password</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+
+                    <x-submit_button></x-submit_button>
 
                 </form>
 
