@@ -25,7 +25,10 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $category->name }}</td>
-                                <td>Edinburgh</td>
+                                <td>
+                                    <x-edit_button>kasihrouteedit</x-edit_button>
+                                    <x-delete_button>{{ route('categories.destroy', $category->id) }}</x-delete_button>
+                                </td>
                             </tr>
                         @endforeach
 

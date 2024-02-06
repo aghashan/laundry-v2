@@ -29,7 +29,10 @@
                                 <td>{{ $outlet->name }}</td>
                                 <td>{{ $outlet->alamat }}</td>
                                 <td>{{$outlet->no_tlp}}</td>
-                                <td>61</td>
+                                <td>
+                                    <x-edit_button>kasihrouteedit</x-edit_button>
+                                    <x-delete_button>{{ route('outlets.destroy', $outlet->id) }}</x-delete_button>
+                                </td>
                             </tr>
                         @endforeach
 

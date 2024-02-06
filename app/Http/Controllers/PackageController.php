@@ -19,7 +19,7 @@ class PackageController extends Controller
     public function create(): View
     {
         $categories = Category::all();
-        return view('/content/package/add',compact('categories'));
+        return view('/content/package/add', compact('categories'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -39,6 +39,13 @@ class PackageController extends Controller
             'durasi' => $request->durasi,
             'min_order' => $request->min_order,
         ]);
+
+        return redirect()->route('packages.index');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        Package::find($id)->delete();
 
         return redirect()->route('packages.index');
     }

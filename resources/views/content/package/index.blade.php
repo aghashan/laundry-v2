@@ -33,7 +33,10 @@
                                 <td>{{ $package->harga }}</td>
                                 <td>{{ $package->durasi }}</td>
                                 <td>{{ $package->min_order }}</td>
-                                <td>2011/04/25</td>
+                                <td>
+                                    <x-edit_button>kasihrouteedit</x-edit_button>
+                                    <x-delete_button>{{ route('packages.destroy', $package->id) }}</x-delete_button>
+                                </td>
                             </tr>
                         @endforeach
 

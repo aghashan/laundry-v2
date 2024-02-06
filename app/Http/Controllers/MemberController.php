@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class MemberController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $members = Member::all();
         return view('/content/member/index', compact('members'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('/content/member/add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'name' => ['required', 'max:255'],
@@ -31,6 +33,13 @@ class MemberController extends Controller
             'alamat' => $request->alamat,
             'no_tlp' => $request->no_tlp,
         ]);
+
+        return redirect()->route('members.index');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        Member::find($id)->delete();
 
         return redirect()->route('members.index');
     }

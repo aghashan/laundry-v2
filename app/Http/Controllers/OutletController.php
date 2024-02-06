@@ -37,4 +37,11 @@ class OutletController extends Controller
 
         return redirect()->route('outlets.index');
     }
+
+    public function destroy($id): RedirectResponse
+    {
+        Outlet::find($id)->delete();
+
+        return redirect()->route('outlets.index');
+    }
 }

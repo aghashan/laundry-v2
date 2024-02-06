@@ -28,7 +28,10 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->outlet_id }}</td>
                                 <td>belum ada role broo</td>
-                                <td>$320,800</td>
+                                <td>
+                                    <x-edit_button>kasihrouteedit</x-edit_button>
+                                    <x-delete_button>{{ route('users.destroy', $user->id) }}</x-delete_button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

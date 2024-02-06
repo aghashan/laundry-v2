@@ -32,4 +32,11 @@ class StatusController extends Controller
 
         return redirect()->route('statuses.index');
     }
+
+    public function destroy($id): RedirectResponse
+    {
+        Status::find($id)->delete();
+
+        return redirect()->route('statuses.index');
+    }
 }
