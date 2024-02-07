@@ -26,10 +26,10 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->outlet_id }}</td>
+                                <td>{{ $user->outlet->name }}</td>
                                 <td>belum ada role broo</td>
                                 <td>
-                                    <x-edit_button>kasihrouteedit</x-edit_button>
+                                    <x-edit_button>{{ route('users.edit', $user->id) }}</x-edit_button>
                                     <x-delete_button>{{ route('users.destroy', $user->id) }}</x-delete_button>
                                 </td>
                             </tr>

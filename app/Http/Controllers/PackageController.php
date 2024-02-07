@@ -49,4 +49,34 @@ class PackageController extends Controller
 
         return redirect()->route('packages.index');
     }
+
+    public function edit($id): View
+    {
+        $package = Package::find($id);
+        $categories = Category::all();
+        return view('/content/package/edit', compact('package', 'categories'));
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'category_id' => 'required',
+            'harga' => 'required', 'numeric',
+            'durasi' => 'required', 'numeric',
+            'min_order' => 'required', 'numeric',
+        ]);
+
+        $package = Package::find($id);
+
+        $package->update([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'harga' => $request->harga,
+            'durasi' => $request->durasi,
+            'min_order' => $request->min_order,
+        ]);
+
+        return redirect()->route('packages.index');
+    }
 }

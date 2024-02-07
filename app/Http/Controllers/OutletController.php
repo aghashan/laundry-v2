@@ -38,6 +38,32 @@ class OutletController extends Controller
         return redirect()->route('outlets.index');
     }
 
+    public function edit($id): View
+    {
+        $outlet = Outlet::find($id);
+
+        return view('/content/outlet/edit', compact('outlet'));
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $this->validate($request, [
+            'name' => ['required', 'max:100'],
+            'alamat' => ['required', 'max:255'],
+            'no_tlp' => ['required', 'string', 'max:13', 'regex:/^[0-9]*$/'],
+        ]);
+
+        $outlet = Outlet::find($id);
+
+        $outlet->update([
+            'name' => $request->name,
+            'alamat' => $request->alamat,
+            'no_tlp' => $request->no_tlp,
+        ]);
+
+        return redirect()->route('outlets.index');
+    }
+
     public function destroy($id): RedirectResponse
     {
         Outlet::find($id)->delete();

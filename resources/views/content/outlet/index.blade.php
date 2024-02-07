@@ -28,9 +28,9 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $outlet->name }}</td>
                                 <td>{{ $outlet->alamat }}</td>
-                                <td>{{$outlet->no_tlp}}</td>
+                                <td>{{ $outlet->no_tlp }}</td>
                                 <td>
-                                    <x-edit_button>kasihrouteedit</x-edit_button>
+                                    <x-edit_button>{{ route('outlets.edit',$outlet->id) }}</x-edit_button>
                                     <x-delete_button>{{ route('outlets.destroy', $outlet->id) }}</x-delete_button>
                                 </td>
                             </tr>

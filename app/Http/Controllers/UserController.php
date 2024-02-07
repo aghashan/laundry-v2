@@ -40,6 +40,39 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function edit($id): View
+    {
+        $user = User::find($id);
+        $outlets = Outlet::all();
+
+        return view('/content/user/edit', compact('user', 'outlets'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'max:255'],
+            'outlet_id' => ['required'],
+            'password' => ['nullable', 'min:8']
+        ]);
+
+        $user = User::find($id);
+
+        if ($request->filled('password')) {
+            if (!Hash::check($request->password, $user->password)) {
+                return redirect()->back()->withErrors(['password' => 'The password is incorrect.'])->withInput();
+            }
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'outlet_id' => $request->outlet_id,
+        ]);
+
+        return redirect()->route('users.index');
+
+    }
+
     public function destroy($id): RedirectResponse
     {
         User::find($id)->delete();

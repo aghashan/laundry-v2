@@ -33,6 +33,27 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+    public function edit($id): View
+    {
+        $category = Category::find($id);
+        return view('/content/category/edit', compact('category'));
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $category = Category::find($id);
+
+        $category->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('categories.index');
+    }
+
     public function destroy($id): RedirectResponse
     {
         Category::find($id)->delete();

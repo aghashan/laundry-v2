@@ -37,6 +37,32 @@ class MemberController extends Controller
         return redirect()->route('members.index');
     }
 
+    public function edit($id): View
+    {
+        $member = Member::find($id);
+
+        return view('/content/member/edit', compact('member'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'max:255'],
+            'alamat' => ['required', 'max:255'],
+            'no_tlp' => ['required', 'string', 'max:13', 'regex:/^[0-9]*$/'],
+        ]);
+
+        $member = Member::find($id);
+
+        $member->update([
+            'name' => $request->name,
+            'alamat' => $request->alamat,
+            'no_tlp' => $request->no_tlp,
+        ]);
+
+        return redirect()->route('members.index');
+    }
+
     public function destroy($id): RedirectResponse
     {
         Member::find($id)->delete();

@@ -30,7 +30,7 @@
                                 <td>{{ $member->alamat }}</td>
                                 <td>{{ $member->no_tlp }}</td>
                                 <td>
-                                    <x-edit_button>kasihrouteedit</x-edit_button>
+                                    <x-edit_button>{{ route('members.edit', $member->id) }}</x-edit_button>
                                     <x-delete_button>{{ route('members.destroy', $member->id) }}</x-delete_button>
                                 </td>
                             </tr>
