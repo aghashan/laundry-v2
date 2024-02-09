@@ -17,6 +17,11 @@ class Outlet extends Model
         return $this->hasMany(User::class);
     }
 
+    public function members(): HasMany
+    {
+        return $this->hasMany(Member::class, 'foreign_key', 'local_key');
+    }
+
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
