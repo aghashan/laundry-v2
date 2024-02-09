@@ -22,7 +22,7 @@ class PackageController extends Controller
         return view('/content/package/add', compact('categories'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -40,7 +40,7 @@ class PackageController extends Controller
             'min_order' => $request->min_order,
         ]);
 
-        return redirect()->route('packages.index');
+        return response()->json(['success' => 'Package add successfully']);
     }
 
     public function edit($id): View

@@ -21,7 +21,7 @@ class OutletController extends Controller
         return view('/content/outlet/add');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => ['required', 'max:100'],
@@ -35,7 +35,7 @@ class OutletController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return redirect()->route('outlets.index');
+        return response()->json(['success' => 'Outlet add successfully']);
     }
 
     public function edit($id): View

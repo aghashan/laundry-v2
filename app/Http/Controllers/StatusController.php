@@ -20,7 +20,7 @@ class StatusController extends Controller
         return view('/content/status/add');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -30,7 +30,7 @@ class StatusController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('statuses.index');
+        return response()->json(['success' => 'Status add successfully']);
     }
 
     public function edit($id): View

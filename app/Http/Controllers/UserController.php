@@ -23,7 +23,7 @@ class UserController extends Controller
         return view('/content/user/add', compact('outlets'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => ['required', 'max:255'],
@@ -37,7 +37,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('users.index');
+        return response()->json(['success' => 'User add successfully']);
     }
 
     public function edit($id): View

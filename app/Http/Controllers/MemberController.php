@@ -20,7 +20,7 @@ class MemberController extends Controller
         return view('/content/member/add');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => ['required', 'max:255'],
@@ -36,7 +36,7 @@ class MemberController extends Controller
             'outlet_id'=>$request->outlet_id
         ]);
 
-        return redirect()->route('members.index');
+        return response()->json(['success' => 'Member add successfully']);
     }
 
     public function edit($id): View

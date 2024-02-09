@@ -20,7 +20,7 @@ class CategoryController extends Controller
         return view('/content/category/add');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -30,7 +30,8 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('categories.index');
+        return response()->json(['success' => 'Category add successfully']);
+
     }
 
     public function edit($id): View
