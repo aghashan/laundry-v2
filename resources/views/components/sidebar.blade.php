@@ -64,33 +64,18 @@
             </a>
         </x-nav_item>
 
+        <hr class="sidebar-divider">
+
+        <div class="sidebar-heading">
+            REPORT
+        </div>
+
         <x-nav_item :active="request()->routeIs('transactions*')" href="transactions.index">
-            <a class="nav-link" href="{{ route('packages.index') }}">
+            <a class="nav-link" href="{{ route('transactions.index') }}">
                 <i class="fa-solid fa-money-check"></i>
                 <span>Transactions</span>
             </a>
         </x-nav_item>
-
-
-
-
-
-        <hr class="sidebar-divider my-0">
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
-                </div>
-            </div>
-        </li>
 
         <hr class="sidebar-divider d-none d-md-block">
 
