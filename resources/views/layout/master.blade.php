@@ -67,6 +67,11 @@
         </div>
     </div>
 
+
+    {{-- blade sweataler2 --}}
+    <x-delete_alert></x-delete_alert>
+    {{-- blade sweataler2 --}}
+
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -78,6 +83,8 @@
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="/js/demo/datatables-demo.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

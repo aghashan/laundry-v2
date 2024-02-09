@@ -26,7 +26,10 @@
                             <td>{{ $status->name }}</td>
                             <td>
                                 <x-edit_button>{{ route('statuses.edit', $status->id) }}</x-edit_button>
-                                <x-delete_button>{{ route('statuses.destroy', $status->id) }}</x-delete_button>
+                                <x-delete_button>deleteConfirmation({{ $status->id }},
+                                    '{{ route('statuses.destroy', 'REPLACE_ID') }}',
+                                    '{{ route('statuses.index') }}')
+                                </x-delete_button>
                             </td>
                         </tr>
                     @endforeach
@@ -36,6 +39,6 @@
             </x-card_table>
 
         </div>
-        
+
     </div>
 @endsection

@@ -33,13 +33,6 @@ class StatusController extends Controller
         return redirect()->route('statuses.index');
     }
 
-    public function destroy($id): RedirectResponse
-    {
-        Status::find($id)->delete();
-
-        return redirect()->route('statuses.index');
-    }
-
     public function edit($id): View
     {
         $status = Status::find($id);
@@ -58,7 +51,11 @@ class StatusController extends Controller
         $status->update([
             'name' => $request->name,
         ]);
+    }
 
-        return redirect()->route('statuses.index');
+    public function destroy($id)
+    {
+        Status::find($id)->delete();
+        return response()->json(['success' => 'Status deleted successfully']);
     }
 }

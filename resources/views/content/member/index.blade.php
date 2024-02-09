@@ -33,7 +33,10 @@
                                 <td>outlet di isi sesuai user sebagai kasir login pada outlet mana</td>
                                 <td>
                                     <x-edit_button>{{ route('members.edit', $member->id) }}</x-edit_button>
-                                    <x-delete_button>{{ route('members.destroy', $member->id) }}</x-delete_button>
+                                    <x-delete_button>deleteConfirmation({{ $member->id }},
+                                        '{{ route('members.destroy', 'REPLACE_ID') }}',
+                                        '{{ route('members.index') }}')
+                                    </x-delete_button>
                                 </td>
                             </tr>
                         @endforeach

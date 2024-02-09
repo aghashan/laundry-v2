@@ -64,10 +64,10 @@ class OutletController extends Controller
         return redirect()->route('outlets.index');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy($id)
     {
         Outlet::find($id)->delete();
 
-        return redirect()->route('outlets.index');
+        return response()->json(['success' => 'Outlet deleted successfully']);
     }
 }

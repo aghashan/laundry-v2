@@ -26,12 +26,14 @@ class MemberController extends Controller
             'name' => ['required', 'max:255'],
             'alamat' => ['required', 'max:255'],
             'no_tlp' => ['required', 'string', 'max:13', 'regex:/^[0-9]*$/'],
+            'outlet_id' => ['nullable'],
         ]);
 
         Member::create([
             'name' => $request->name,
             'alamat' => $request->alamat,
             'no_tlp' => $request->no_tlp,
+            'outlet_id'=>$request->outlet_id
         ]);
 
         return redirect()->route('members.index');
@@ -63,10 +65,10 @@ class MemberController extends Controller
         return redirect()->route('members.index');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy($id)
     {
         Member::find($id)->delete();
 
-        return redirect()->route('members.index');
+        return response()->json(['success' => 'Member deleted successfully']);
     }
 }

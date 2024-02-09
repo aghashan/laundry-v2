@@ -30,7 +30,10 @@
                                 <td>belum ada role broo</td>
                                 <td>
                                     <x-edit_button>{{ route('users.edit', $user->id) }}</x-edit_button>
-                                    <x-delete_button>{{ route('users.destroy', $user->id) }}</x-delete_button>
+                                    <x-delete_button>deleteConfirmation({{ $user->id }},
+                                        '{{ route('users.destroy', 'REPLACE_ID') }}',
+                                        '{{ route('users.index') }}')
+                                    </x-delete_button>
                                 </td>
                             </tr>
                         @endforeach
@@ -40,7 +43,5 @@
 
             </div>
         </div>
-    </div>
-
     </div>
 @endsection

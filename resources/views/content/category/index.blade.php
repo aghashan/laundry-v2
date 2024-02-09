@@ -27,7 +27,10 @@
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     <x-edit_button>{{ route('categories.edit', $category->id) }}</x-edit_button>
-                                    <x-delete_button>{{ route('categories.destroy', $category->id) }}</x-delete_button>
+                                    <x-delete_button>deleteConfirmation({{ $category->id }},
+                                        '{{ route('categories.destroy', 'REPLACE_ID') }}',
+                                        '{{ route('categories.index') }}')
+                                    </x-delete_button>
                                 </td>
                             </tr>
                         @endforeach
@@ -38,7 +41,5 @@
 
             </div>
         </div>
-    </div>
-
     </div>
 @endsection

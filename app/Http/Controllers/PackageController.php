@@ -43,13 +43,6 @@ class PackageController extends Controller
         return redirect()->route('packages.index');
     }
 
-    public function destroy($id): RedirectResponse
-    {
-        Package::find($id)->delete();
-
-        return redirect()->route('packages.index');
-    }
-
     public function edit($id): View
     {
         $package = Package::find($id);
@@ -78,5 +71,12 @@ class PackageController extends Controller
         ]);
 
         return redirect()->route('packages.index');
+    }
+
+    public function destroy($id)
+    {
+        Package::find($id)->delete();
+
+        return response()->json(['success' => 'Member deleted successfully']);
     }
 }
