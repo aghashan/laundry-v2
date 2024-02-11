@@ -8,7 +8,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('members.update', $member->id) }}" method="POST">
+                <form action="{{ route('members.update', $member->id) }}" method="POST" id="editAlert">
 
                     @csrf
 
@@ -30,7 +30,7 @@
                             value="{{ old('no_tlp', $member->no_tlp) }}">
                     </div>
 
-                    <x-submit_button></x-submit_button>
+                    <x-submit_edit_button>{{route('members.index')}}</x-submit_edit_button>
 
                 </form>
 

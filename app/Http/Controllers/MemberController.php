@@ -26,14 +26,12 @@ class MemberController extends Controller
             'name' => ['required', 'max:255'],
             'alamat' => ['required', 'max:255'],
             'no_tlp' => ['required', 'string', 'max:13', 'regex:/^[0-9]*$/'],
-            'outlet_id' => ['nullable'],
         ]);
 
         Member::create([
             'name' => $request->name,
             'alamat' => $request->alamat,
             'no_tlp' => $request->no_tlp,
-            'outlet_id'=>$request->outlet_id
         ]);
 
         return response()->json(['success' => 'Member add successfully']);

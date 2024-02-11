@@ -17,9 +17,4 @@ class Member extends Model
     {
         return $this->hasMany(Transaction::class);
     }
-
-    public function outlet(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'foreign_key', 'other_key');
-    }
 }

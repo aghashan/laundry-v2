@@ -17,7 +17,6 @@
                             <th>Name</th>
                             <th>Alamat</th>
                             <th>No_tlp</th>
-                            <th>Outlet</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -30,7 +29,6 @@
                                 <td>{{ $member->name }}</td>
                                 <td>{{ $member->alamat }}</td>
                                 <td>{{ $member->no_tlp }}</td>
-                                <td>outlet di isi sesuai user sebagai kasir login pada outlet mana</td>
                                 <td>
                                     <x-edit_button>{{ route('members.edit', $member->id) }}</x-edit_button>
                                     <x-delete_button>deleteConfirmation({{ $member->id }},
