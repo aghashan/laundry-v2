@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MemberController;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
