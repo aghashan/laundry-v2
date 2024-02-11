@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Outlet;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -45,7 +44,7 @@ class OutletController extends Controller
         return view('/content/outlet/edit', compact('outlet'));
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => ['required', 'max:100'],
@@ -61,7 +60,7 @@ class OutletController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return redirect()->route('outlets.index');
+        return response()->json(['success' => 'Outlet updated successfully ']);
     }
 
     public function destroy($id)

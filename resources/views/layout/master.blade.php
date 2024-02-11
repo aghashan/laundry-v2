@@ -71,6 +71,7 @@
     {{-- blade sweataler2 --}}
     <x-delete_alert></x-delete_alert>
     <x-success_alert></x-success_alert>
+    <x-edit_alert></x-edit_alert>
     {{-- blade sweataler2 --}}
 
     <script src="/vendor/jquery/jquery.min.js"></script>

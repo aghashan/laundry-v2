@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Status;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -51,6 +50,8 @@ class StatusController extends Controller
         $status->update([
             'name' => $request->name,
         ]);
+
+        return response()->json(['success' => 'Status updated successfully ']);
     }
 
     public function destroy($id)

@@ -62,7 +62,7 @@ class MemberController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return redirect()->route('members.index');
+        return response()->json(['success'=>'Member updated successfully']);
     }
 
     public function destroy($id)

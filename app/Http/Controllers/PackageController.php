@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Package;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -50,7 +49,7 @@ class PackageController extends Controller
         return view('/content/package/edit', compact('package', 'categories'));
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -70,13 +69,13 @@ class PackageController extends Controller
             'min_order' => $request->min_order,
         ]);
 
-        return redirect()->route('packages.index');
+        return response()->json(['success' => 'Package updated successfully']);
     }
 
     public function destroy($id)
     {
         Package::find($id)->delete();
 
-        return response()->json(['success' => 'Member deleted successfully']);
+        return response()->json(['success' => 'Package deleted successfully']);
     }
 }

@@ -8,16 +8,17 @@
 
             <div class="card-body">
 
-                <form action="{{ route('statuses.update',$status->id) }}" method="POST">
+                <form action="{{ route('statuses.update', $status->id) }}" method="POST" id="editAlert">
 
                     @csrf
 
                     <div class="mb-4">
                         <label for="name" class="form-label fw-bold">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" value="{{old('name',$status->name)}}">
+                        <input type="text" class="form-control" name="name" id="name"
+                            value="{{ old('name', $status->name) }}">
                     </div>
 
-                    <x-submit_button></x-submit_button>
+                    <x-submit_edit_button>{{ route('statuses.index') }}</x-submit_edit_button>
 
                 </form>
 

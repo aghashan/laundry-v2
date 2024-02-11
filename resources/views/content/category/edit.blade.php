@@ -8,7 +8,7 @@
 
             <div class="card-body">
 
-                <form action=" {{ route('categories.update', $category->id) }}" method="POST">
+                <form action=" {{ route('categories.update', $category->id) }}" method="POST" id="editAlert">
 
                     @csrf
 
@@ -18,7 +18,7 @@
                             value="{{ old('name', $category->name) }}">
                     </div>
 
-                    <x-submit_button></x-submit_button>
+                    <x-submit_edit_button>{{ route('categories.index') }}</x-submit_edit_button>
 
                 </form>
 

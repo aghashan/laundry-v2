@@ -8,7 +8,7 @@
 
             <div class="card-body">
 
-                <form action="{{ route('users.update', $user->id) }}" method="POST">
+                <form action="{{ route('users.update', $user->id) }}" method="POST" id="editAlert">
 
                     @csrf
 

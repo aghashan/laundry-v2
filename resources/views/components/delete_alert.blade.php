@@ -1,7 +1,7 @@
 <script>
     function deleteConfirmation(id, route, redirectTo) {
         Swal.fire({
-            title: 'Are you sure you want to delete this?',
+            title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
