@@ -30,7 +30,9 @@
                         icon: 'error',
                         title: 'Error!',
                         text: 'Failed to add . Please try again later.',
-                    });
+                    }).then(() => {
+                        addAlert.reset();
+                    });;
                     console.error('Error adding :', error);
                 });
         });

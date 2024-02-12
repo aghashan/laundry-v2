@@ -35,7 +35,7 @@
                             value="{{ old('password', $user->password) }}">
                     </div>
 
-                    <x-submit_button></x-submit_button>
+                    <x-submit_edit_button>{{ route('users.index') }}</x-submit_edit_button>
 
                 </form>
 
