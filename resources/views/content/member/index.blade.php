@@ -17,7 +17,6 @@
                             <th>Name</th>
                             <th>Alamat</th>
                             <th>No_tlp</th>
-                            <th>Outlet</th>
                             <th>Action</th>
                         </tr>
                     </thead>
