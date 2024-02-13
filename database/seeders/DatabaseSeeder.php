@@ -51,13 +51,19 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i = 1; $i < 11; $i++) {
-            User::create([
-                'name' => "user-" . $i,
-                'password' => 'password' . $i,
-                'outlet_id' => $i,
-            ]);
-        }
+        User::create([
+            'name' => "admin",
+            'password' => "admin123",
+            'outlet_id' => 1,
+            'role' => "admin",
+        ]);
+
+        User::create([
+            'name' => "kasir",
+            'password' => "kasir123",
+            'outlet_id' => 1,
+            'role' => "kasir",
+        ]);
 
         for ($i = 1; $i < 11; $i++) {
             Package::create([

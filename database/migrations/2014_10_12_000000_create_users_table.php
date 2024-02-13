@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('password');
             $table->foreignId('outlet_id')->constrained()->cascadeOnDelete();
+            $table->enum('role',['admin','kasir']);
             $table->timestamps();
         });
     }

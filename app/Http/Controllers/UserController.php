@@ -28,12 +28,14 @@ class UserController extends Controller
             'name' => ['required', 'max:255'],
             'outlet_id' => ['required'],
             'password' => ['required', 'min:8'],
+            'role' => ['required'],
         ]);
 
         User::create([
             'name' => $request->name,
             'outlet_id' => $request->outlet_id,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         return response()->json(['success' => 'User add successfully']);
