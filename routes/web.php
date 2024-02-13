@@ -82,4 +82,5 @@ Route::group(['prefix' => 'categories'], function () {
 
 Route::group(['prefix' => 'transactions'], function () {
     Route::get('/', [TransactionController::class, 'index'])->name('transactions.index');
+    Route::get('/add', [TransactionController::class, 'create'])->name('transactions.add');
 });

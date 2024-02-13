@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Category;
+use App\Models\Diskon;
 use App\Models\Member;
 use App\Models\Outlet;
 use App\Models\Package;
@@ -62,11 +63,13 @@ class DatabaseSeeder extends Seeder
             Package::create([
                 'name' => "package-" . $i,
                 'category_id' => $i,
-                'harga' => $i."000",
-                'durasi'=>$i,
-                'min_order'=>$i,
+                'harga' => $i . "000",
+                'durasi' => $i,
+                'min_order' => $i,
             ]);
         }
+
+        Diskon::create(['name' => 'basedeals', 'amount' => '10000']);
 
     }
 }

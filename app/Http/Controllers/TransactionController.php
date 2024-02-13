@@ -8,4 +8,8 @@ class TransactionController extends Controller
     {
         return view('/content/transaction/index');
     }
+
+    public function create(){
+        return view('/content/transaction/add');
+    }
 }
