@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Diskon::create(['nama' => 'basedeals', 'amount' => '10000']);
+        Diskon::create(['name' => 'basedeals', 'amount' => '10000']);
 
     }
 }
