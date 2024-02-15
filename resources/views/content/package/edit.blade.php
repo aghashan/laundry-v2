@@ -47,7 +47,12 @@
                             value="{{ old('min_order', $package->min_order) }}">
                     </div>
 
-                    <x-submit_edit_button>{{ route('packages.index') }}</x-submit_edit_button>
+                    <x-right_position>
+                        <div class="row">
+                            <x-cancel_button>{{ route('packages.index') }}</x-cancel_button>
+                            <x-submit_edit_button>{{ route('packages.index') }}</x-submit_edit_button>
+                        </div>
+                    </x-right_position>
 
                 </form>
 

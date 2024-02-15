@@ -30,7 +30,12 @@
                             value="{{ old('no_tlp', $outlet->no_tlp) }}">
                     </div>
 
-                    <x-submit_edit_button>{{ route('outlets.index') }}</x-submit_edit_button>
+                    <x-right_position>
+                        <div class="row">
+                            <x-cancel_button>{{ route('outlets.index') }}</x-cancel_button>
+                            <x-submit_edit_button>{{ route('outlets.index') }}</x-submit_edit_button>
+                        </div>
+                    </x-right_position>
 
                 </form>
 
