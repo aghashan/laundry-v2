@@ -16,15 +16,17 @@
                     <img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <button id="logoutButton" class="dropdown-item" onclick="confirmLogout()">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </a>
+                        keluar
+                    </button>
                 </div>
             </li>
 
         </ul>
 
     </nav>
+
+    <x-logout_alert></x-logout_alert>
 
 </div>

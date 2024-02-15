@@ -8,13 +8,14 @@
                     <div class="row">
                         <div class="col">
                             <div class="p-5">
-                                <form class="user">
+                                <form class="user" action="{{ route('login.action') }}" method="POST">
+                                    @csrf
                                     <div class="mb-4">
                                         <input type="text" class="form-control" name="name" id="name"
                                             placeholder="Username...">
                                     </div>
                                     <div class="mb-4">
-                                        <input type="text" class="form-control" name="password" id="password"
+                                        <input type="password" class="form-control" name="password" id="password"
                                             placeholder="Password...">
                                     </div>
                                     <div class="text-center">

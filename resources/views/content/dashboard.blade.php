@@ -77,9 +77,7 @@
 
         <div class="row">
             <center>
-                <h1 class="font-weight-bold">
-                    Kosong
-                </h1>
+                <h1>KOSONG</h1>
             </center>
         </div>
 
