@@ -1,5 +1,5 @@
-<div class="col col-md-6 text-md-left">
+<x-right_position>
     <button class="btn btn-primary font-weight-bold" type="submit" onclick="addAlert()">
         Submit
     </button>
-</div>
+</x-right_position>
