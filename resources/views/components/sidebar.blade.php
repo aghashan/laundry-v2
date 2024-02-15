@@ -18,53 +18,55 @@
 
         <hr class="sidebar-divider">
 
-        <div class="sidebar-heading">
-            MASTER
-        </div>
+        @can('view_dashboard')
+            <div class="sidebar-heading">
+                MASTER
+            </div>
 
-        <x-nav_item :active="request()->routeIs('users*')" href="users.index">
-            <a class="nav-link" href="{{ route('users.index') }}">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Users</span>
-            </a>
-        </x-nav_item>
+            <x-nav_item :active="request()->routeIs('users*')" href="users.index">
+                <a class="nav-link" href="{{ route('users.index') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Users</span>
+                </a>
+            </x-nav_item>
 
-        <x-nav_item :active="request()->routeIs('members*')" href="members.index">
-            <a class="nav-link" href="{{ route('members.index') }}">
-                <i class="fas fa-fw fa-users"></i>
-                <span>Members</span>
-            </a>
-        </x-nav_item>
+            <x-nav_item :active="request()->routeIs('members*')" href="members.index">
+                <a class="nav-link" href="{{ route('members.index') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Members</span>
+                </a>
+            </x-nav_item>
 
-        <x-nav_item :active="request()->routeIs('outlets*')" href="outlets.index">
-            <a class="nav-link" href="{{ route('outlets.index') }}">
-                <i class="fa-solid fa-shop"></i>
-                <span>Outlets</span>
-            </a>
-        </x-nav_item>
+            <x-nav_item :active="request()->routeIs('outlets*')" href="outlets.index">
+                <a class="nav-link" href="{{ route('outlets.index') }}">
+                    <i class="fa-solid fa-shop"></i>
+                    <span>Outlets</span>
+                </a>
+            </x-nav_item>
 
-        <x-nav_item :active="request()->routeIs('statuses*')" href="statuses.index">
-            <a class="nav-link" href="{{ route('statuses.index') }}">
-                <i class="fa-solid fa-certificate"></i>
-                <span>Statuses</span>
-            </a>
-        </x-nav_item>
+            <x-nav_item :active="request()->routeIs('statuses*')" href="statuses.index">
+                <a class="nav-link" href="{{ route('statuses.index') }}">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>Statuses</span>
+                </a>
+            </x-nav_item>
 
-        <x-nav_item :active="request()->routeIs('categories*')" href="categories.index">
-            <a class="nav-link" href="{{ route('categories.index') }}">
-                <i class="fa-solid fa-list"></i>
-                <span>Categories</span>
-            </a>
-        </x-nav_item>
+            <x-nav_item :active="request()->routeIs('categories*')" href="categories.index">
+                <a class="nav-link" href="{{ route('categories.index') }}">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Categories</span>
+                </a>
+            </x-nav_item>
 
-        <x-nav_item :active="request()->routeIs('packages*')" href="packages.index">
-            <a class="nav-link" href="{{ route('packages.index') }}">
-                <i class="fa-solid fa-box"></i>
-                <span>Packages</span>
-            </a>
-        </x-nav_item>
+            <x-nav_item :active="request()->routeIs('packages*')" href="packages.index">
+                <a class="nav-link" href="{{ route('packages.index') }}">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Packages</span>
+                </a>
+            </x-nav_item>
 
-        <hr class="sidebar-divider">
+            <hr class="sidebar-divider">
+        @endcan
 
         <div class="sidebar-heading">
             REPORT

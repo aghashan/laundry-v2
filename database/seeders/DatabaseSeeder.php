@@ -84,15 +84,16 @@ class DatabaseSeeder extends Seeder
         Diskon::create(['name' => 'basedeals', 'amount' => '10000']);
 
         $permission = Permission::updateOrCreate(['name' => 'view_dashboard']);
+        $kasirPermission = Permission::updateOrCreate(['name'=>'transaction']);
 
         $admin->givePermissionTo($permission);
-        // $kasir->givePermissionTo($permission);
+        $kasir->givePermissionTo($kasirPermission);
 
 
         $role_admin = User::where('role_id', 1)->first();
-        // $role_kasir = User::where('role_id', 2)->first();
+        $role_kasir = User::where('role_id', 2)->first();
 
         $role_admin->assignRole('admin');
-        // $role_kasir->assignRole('kasir');
+        $role_kasir->assignRole('kasir');
     }
 }
