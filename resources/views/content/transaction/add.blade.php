@@ -12,13 +12,15 @@
                     <div class="col">
 
                         <x-right_position>
-                            <button class="btn btn-success font-weight-bold"><i class="fa fa-plus"></i> Add Package</button>
+                            <!-- Button to trigger modal -->
+                            <button id="addPackageBtn" class="btn btn-success font-weight-bold" data-toggle="modal"
+                                data-target="#packageModal"><i class="fa fa-plus"></i> Add Package</button>
                         </x-right_position>
 
                         <hr>
 
                         <div class="table-responsive">
-                            <table class="table table-borderless">
+                            <table id="packageTable" class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -30,27 +32,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Satuan</td>
-                                        <td>10000</td>
-                                        <td>2</td>
-                                        <td>Rp.30000</td>
-                                        <td><x-delete_button></x-delete_button></td>
-                                    </tr>
+                                    <!-- Table rows will be dynamically added here -->
+                                </tbody>
+                                <tfoot>
                                     <tr>
                                         <th colspan="4">Total</th>
-                                        <td>total bayar</td>
+                                        <td id="totalBayar">0</td>
+                                        <td></td> <!-- This cell is left empty for consistency -->
                                     </tr>
                                     <tr>
                                         <th colspan="4">Diskon</th>
-                                        <td>total bayar</td>
+                                        <td id="diskon">0</td>
+                                        <td></td> <!-- This cell is left empty for consistency -->
                                     </tr>
                                     <tr>
                                         <th colspan="4">Total Bayar</th>
-                                        <td>total bayar</td>
+                                        <td id="totalBayarAkhir">0</td>
+                                        <td></td> <!-- This cell is left empty for consistency -->
                                     </tr>
-                                </tbody>
+                                </tfoot>
                             </table>
                         </div>
 
@@ -77,7 +77,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="" class="form-label font-weight-bold">Member</label>
-                            <select class=" form-control" aria-label="Default select example" name="outlet_id">
+                            <select class="form-control" aria-label="Default select example" name="outlet_id">
                                 <option></option>
                                 <option value="1">parti</option>
                             </select>
@@ -105,4 +105,136 @@
         </div>
 
     </div>
+
+    <div class="modal fade" id="packageModal" tabindex="-1" role="dialog" aria-labelledby="packageModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="packageModalLabel">Add Package</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="packageSelect" class="font-weight-bold">Select Package:</label>
+                        <select class="form-control" id="packageSelect">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="form-label font-weight-bold">Qty</label>
+                        <input type="number" class="form-control" id="selectedQty">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="addSelectedPackageBtn" class="btn btn-primary">Add Package</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to assign PHP variable to JavaScript variable -->
+    <script>
+        const availablePackages = @json($availablePackages);
+    </script>
+
+    <!-- Script for handling package selection -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addPackageBtn = document.getElementById('addPackageBtn');
+            const packageSelect = document.getElementById('packageSelect');
+            const addSelectedPackageBtn = document.getElementById('addSelectedPackageBtn');
+            const packageTableBody = document.querySelector('#packageTable tbody');
+            const totalBayarElement = document.getElementById('totalBayar');
+            const diskonElement = document.getElementById('diskon');
+            const totalBayarAkhirElement = document.getElementById('totalBayarAkhir');
+            let totalBayar = 0;
+            let counter = 0; // Variable to track row number
+
+            // Function to fetch available packages
+            function fetchAvailablePackages() {
+                // Clear existing options
+                packageSelect.innerHTML = '';
+
+                // Populate dropdown with available packages
+                availablePackages.forEach(package => {
+                    const option = document.createElement('option');
+                    option.value = package.id;
+                    option.textContent = `${package.name} - Rp.${package.harga}`;
+                    packageSelect.appendChild(option);
+                });
+            }
+
+            // Event listener for when Add Package button is clicked
+            addPackageBtn.addEventListener('click', function() {
+                fetchAvailablePackages();
+            });
+
+            // Event listener for when Add Selected Package button is clicked
+            addSelectedPackageBtn.addEventListener('click', function() {
+                // Get selected package details
+                const selectedPackageId = packageSelect.value;
+                const selectedPackage = availablePackages.find(package => package.id === parseInt(
+                    selectedPackageId));
+                const selectedQty = parseInt(document.getElementById('selectedQty').value);
+
+                // Calculate subtotal
+                const subtotal = selectedPackage.harga * selectedQty;
+
+                // Increment counter for row number
+                counter++;
+
+                // Add selected package to table
+                const newRow = `
+                    <tr>
+                        <td>${counter}</td> <!-- Use counter for row number -->
+                        <td>${selectedPackage.name}</td>
+                        <td>${selectedPackage.harga}</td>
+                        <td>${selectedQty}</td>
+                        <td>Rp.${subtotal}</td>
+                        <td><button class="btn btn-danger btn-sm removeBtn">Remove</button></td>
+                    </tr>
+                `;
+
+                packageTableBody.insertAdjacentHTML('beforeend', newRow);
+
+                // Update total bayar
+                totalBayar += subtotal;
+                totalBayarElement.textContent = `Rp.${totalBayar}`;
+
+                // Close the modal
+                $('#packageModal').modal('hide');
+            });
+
+            // Function to remove a package row
+            function removePackage() {
+                const row = this.parentNode.parentNode;
+                const subtotal = parseInt(row.querySelector('td:nth-child(5)').textContent.replace('Rp.', '')
+                    .replace('.', '')); // Extract subtotal
+                totalBayar -= subtotal; // Subtract subtotal from totalBayar
+                totalBayarElement.textContent = `Rp.${totalBayar}`;
+                row.remove();
+
+                // Update row numbers after removal
+                fillRowNumbers();
+            }
+
+            // Function to fill row numbers dynamically
+            function fillRowNumbers() {
+                const rows = packageTableBody.querySelectorAll('tr');
+                rows.forEach((row, index) => {
+                    row.querySelector('td:first-child').textContent = index + 1;
+                });
+            }
+
+            // Event delegation to handle remove button clicks
+            packageTableBody.addEventListener('click', function(event) {
+                if (event.target.classList.contains('removeBtn')) {
+                    removePackage.call(event.target);
+                }
+            });
+        });
+    </script>
 @endsection

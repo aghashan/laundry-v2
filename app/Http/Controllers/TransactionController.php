@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Package;
+
 class TransactionController extends Controller
 {
     public function index()
@@ -10,6 +12,7 @@ class TransactionController extends Controller
     }
 
     public function create(){
-        return view('/content/transaction/add');
+        $package = Package::all();
+        return view('/content/transaction/add',['availablePackages' => $package]);
     }
 }
