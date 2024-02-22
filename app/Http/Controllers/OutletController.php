@@ -12,7 +12,7 @@ class OutletController extends Controller
 {
     public function index(): View
     {
-        $outlets = Outlet::all();
+        $outlets = Outlet::latest()->get();
         return view('/content/outlet/index', compact('outlets'));
     }
 

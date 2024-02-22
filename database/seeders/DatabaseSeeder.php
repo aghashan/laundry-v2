@@ -4,17 +4,16 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\User;
-use App\Models\Diskon;
+use App\Models\Category;
 use App\Models\Member;
 use App\Models\Outlet;
-use App\Models\Status;
 use App\Models\Package;
-use App\Models\Category;
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,24 +22,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
+        // Role seeder
         $admin = Role::updateOrCreate(['name' => 'admin']);
         $kasir = Role::updateOrCreate(['name' => 'kasir']);
 
+        // Category seeder
         for ($i = 1; $i < 11; $i++) {
             Category::create(['name' => "category-" . $i]);
         }
 
+        // Status seeder
         for ($i = 1; $i < 11; $i++) {
             Status::create(['name' => "status-" . $i]);
         }
 
+        // Outlet seeder
         for ($i = 1; $i < 11; $i++) {
             Outlet::create([
                 'name' => "outlet-" . $i,
@@ -49,6 +45,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // Member seeder
         for ($i = 1; $i < 11; $i++) {
             Member::create([
                 'name' => "member-" . $i,
@@ -57,6 +54,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // User admin seeder
         User::create([
             'name' => "admin",
             'password' => Hash::make('admin123'),
@@ -64,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
         ]);
 
+        // User kasir seeder
         User::create([
             'name' => "kasir",
             'password' => Hash::make('kasir123'),
@@ -71,6 +70,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2,
         ]);
 
+        // Package seeder
         for ($i = 1; $i < 11; $i++) {
             Package::create([
                 'name' => "package-" . $i,
@@ -81,19 +81,18 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Diskon::create(['name' => 'basedeals', 'amount' => '10000']);
+        //Permiison seeder
+        $superpermission = Permission::updateOrCreate(['name' => 'view_dashboard']);
+        $Transaction = Permission::updateOrCreate(['name' => 'transaction']);
 
-        $permission = Permission::updateOrCreate(['name' => 'view_dashboard']);
-        $kasirPermission = Permission::updateOrCreate(['name'=>'transaction']);
+        //GivePermision seeder
+        $admin->givePermissionTo($superpermission);
+        $kasir->givePermissionTo($Transaction);
 
-        $admin->givePermissionTo($permission);
-        $kasir->givePermissionTo($kasirPermission);
+        // $role_admin = User::where('role_id', 1)->first();
+        // $role_kasir = User::where('role_id', 2)->first();
 
-
-        $role_admin = User::where('role_id', 1)->first();
-        $role_kasir = User::where('role_id', 2)->first();
-
-        $role_admin->assignRole('admin');
-        $role_kasir->assignRole('kasir');
+        // $role_admin->assignRole('admin');
+        // $role_kasir->assignRole('kasir');
     }
 }

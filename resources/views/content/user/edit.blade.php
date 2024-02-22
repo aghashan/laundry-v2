@@ -31,8 +31,10 @@
 
                     <div class="mb-4">
                         <label for="name" class="form-label fw-bold">Password</label>
-                        <input type="password" class="form-control" name="password" id="password"
-                            value="{{ old('password', $user->password) }}">
+                        <input type="password" class="form-control" name="password" id="password">
+                        <small class="text-secondary d-block mt-1">*) Leave this field empty if you don't want to change the
+                            password.</small>
+
                     </div>
 
                     <x-right_position>

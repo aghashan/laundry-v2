@@ -12,7 +12,7 @@ class PackageController extends Controller
 {
     public function index(): View
     {
-        $packages = Package::all();
+        $packages = Package::latest()->get();
         return view('/content/package/index', compact('packages'));
     }
 

@@ -11,7 +11,7 @@ class StatusController extends Controller
 {
     public function index()
     {
-        $statuses = Status::all();
+        $statuses = Status::latest()->get();
         return view('/content/status/index', compact('statuses'));
     }
 

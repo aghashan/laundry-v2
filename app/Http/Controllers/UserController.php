@@ -64,10 +64,12 @@ class UserController extends Controller
 
         $user = User::find($id);
 
+        $password = $request->has('password') ? bcrypt($request->password) : $user->password;
+
         $user->update([
             'name' => $request->name,
             'outlet_id' => $request->outlet_id,
-            'password' => $request->password,
+            'password' => $password,
         ]);
 
         return response()->json(['success' => 'User updated succesfully']);

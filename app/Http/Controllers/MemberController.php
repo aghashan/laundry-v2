@@ -11,7 +11,7 @@ class MemberController extends Controller
 {
     public function index(): View
     {
-        $members = Member::all();
+        $members = Member::latest()->get();
         return view('/content/member/index', compact('members'));
     }
 
