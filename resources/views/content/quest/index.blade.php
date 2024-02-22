@@ -1,4 +1,4 @@
-@extends('/layout/quest')
+@extends('/layout/guest')
 @section('content')
     <div class="row justify-content-center min-vh-100 align-content-center">
         <div class="col-xl-10 col-lg-12 col-md-9">
@@ -12,7 +12,7 @@
                                     @csrf
                                     <div class="mb-4">
                                         <input type="text" class="form-control" name="name" id="name"
-                                            placeholder="Username...">
+                                            placeholder="Username..." value="{{ old('name') }}">
                                     </div>
                                     <div class="mb-4">
                                         <input type="password" class="form-control" name="password" id="password"

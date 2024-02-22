@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Package;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class PackageController extends Controller
@@ -24,24 +25,28 @@ class PackageController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
+        $validate = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
-            'harga' => 'required', 'numeric',
-            'durasi' => 'required', 'numeric',
-            'min_order' => 'required', 'numeric',
+            'harga' => 'required|numeric',
+            'durasi' => 'required|numeric',
+            'min_order' => 'required|numeric',
         ]);
 
-        Package::create([
-            'name' => $request->name,
-            'category_id' => $request->category_id,
-            'harga' => $request->harga,
-            'durasi' => $request->durasi,
-            'min_order' => $request->min_order,
-        ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput();
+        } else {
+            Package::create([
+                'name' => $request->name,
+                'category_id' => $request->category_id,
+                'harga' => $request->harga,
+                'durasi' => $request->durasi,
+                'min_order' => $request->min_order,
+            ]);
+            session()->flash('success', 'Package add successfully');
+            return redirect()->route('packages.add');
+        }
 
-        session()->flash('success','Package add successfully');
-        return redirect()->route('packages.add');
     }
 
     public function edit($id): View

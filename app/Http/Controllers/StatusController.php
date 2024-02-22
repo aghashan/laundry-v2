@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class StatusController extends Controller
@@ -21,16 +22,19 @@ class StatusController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validate = Validator::make($request->all(), [
             'name' => 'required',
         ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput();
+        } else {
+            Status::create([
+                'name' => $request->name,
+            ]);
 
-        Status::create([
-            'name' => $request->name,
-        ]);
-
-        session()->flash('success','Status add successfully');
-        return redirect()->route('statuses.add');
+            session()->flash('success', 'Status add successfully');
+            return redirect()->route('statuses.add');
+        }
     }
 
     public function edit($id): View

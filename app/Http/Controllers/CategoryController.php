@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -21,18 +22,18 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validate = Validator::make($request->all(), [
             'name' => 'required',
         ]);
-
-        Category::create([
-            'name' => $request->name,
-        ]);
-
-        // return view('/content/category/add')->with(['success' => 'Category Add Successfully!!']);
-
-        session()->flash('success', 'Category Add Successfully!!');
-        return redirect()->route('categories.add');
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput();
+        } else {
+            Category::create([
+                'name' => $request->name,
+            ]);
+            session()->flash('success', 'Category Add Successfully!!');
+            return redirect()->route('categories.add');
+        }
 
     }
 
@@ -61,6 +62,6 @@ class CategoryController extends Controller
     {
         Category::find($id)->delete();
 
-        return redirect()->route('categories.index')->with(['success' => 'Delete Category Berhasil!!']);
+        return redirect()->route('categories.index');
     }
 }

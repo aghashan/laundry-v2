@@ -6,6 +6,7 @@ use App\Models\Outlet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -24,22 +25,25 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validate = Validator::make($request->all(), [
             'name' => ['required', 'max:255'],
             'outlet_id' => ['required'],
             'password' => ['required', 'min:8'],
             'role' => ['required'],
         ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput();
+        } else {
+            User::create([
+                'name' => $request->name,
+                'outlet_id' => $request->outlet_id,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+            ]);
 
-        User::create([
-            'name' => $request->name,
-            'outlet_id' => $request->outlet_id,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-        ]);
-
-        session()->flash('success', 'User add successfully');
-        return redirect()->route('users.add');
+            session()->flash('success', 'User add successfully');
+            return redirect()->route('users.add');
+        }
     }
 
     public function edit($id): View

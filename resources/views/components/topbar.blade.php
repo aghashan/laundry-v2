@@ -30,6 +30,3 @@
     <x-logout_alert></x-logout_alert>
 
 </div>
-
-
-

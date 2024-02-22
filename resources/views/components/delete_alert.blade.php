@@ -20,10 +20,11 @@
                     icon: 'success',
                     showConfirmButton: false
                 });
+
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Cancelled',
-                    'Your action has been cancelled :)',
+                    'Your action has been cancelled',
                     'info'
                 );
             }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class MemberController extends Controller
@@ -21,20 +22,23 @@ class MemberController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validate = Validator::make($request->all(), [
             'name' => ['required', 'max:255'],
             'alamat' => ['required', 'max:255'],
             'no_tlp' => ['required', 'string', 'max:13', 'regex:/^[0-9]*$/'],
         ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput();
+        } else {
+            Member::create([
+                'name' => $request->name,
+                'alamat' => $request->alamat,
+                'no_tlp' => $request->no_tlp,
+            ]);
 
-        Member::create([
-            'name' => $request->name,
-            'alamat' => $request->alamat,
-            'no_tlp' => $request->no_tlp,
-        ]);
-
-        session()->flash('success', 'Member add successfully');
-        return redirect()->route('members.add');
+            session()->flash('success', 'Member add successfully');
+            return redirect()->route('members.add');
+        }
     }
 
     public function edit($id): View

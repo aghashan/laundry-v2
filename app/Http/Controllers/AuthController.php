@@ -14,13 +14,18 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $login = $request->validate(['name' => 'required', 'password' => 'required']);
+        $login = $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+        ]);
 
         if (Auth::attempt($login)) {
             request()->session()->regenerate();
+            session()->flash('success', 'Login Succesfully!!');
             return redirect()->route('dashboard');
-        }else{
-            return redirect()->route('login');
+        } else {
+            session()->flash('error', 'Username / Password salah');
+            return redirect()->back()->withErrors($login)->withInput();
         }
     }
 
@@ -32,6 +37,6 @@ class AuthController extends Controller
 
         request()->session()->regenerateToken();
 
-        return response()->json(['success'=>'You Are Logout']);
+        return response()->json(['success' => 'You Are Logout']);
     }
 }

@@ -34,7 +34,12 @@
                         <input type="password" class="form-control" name="password" id="password">
                     </div>
 
-                    <x-submit_button></x-submit_button>
+                    <x-right_position>
+                        <div class="row">
+                            <x-cancel_button>{{ route('users.index') }}</x-cancel_button>
+                            <x-submit_button></x-submit_button>
+                        </div>
+                    </x-right_position>
 
                 </form>
 

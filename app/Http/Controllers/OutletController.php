@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Outlet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -22,20 +23,24 @@ class OutletController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validate = Validator::make($request->all(), [
             'name' => ['required', 'max:100'],
             'alamat' => ['required', 'max:255'],
             'no_tlp' => ['required', 'string', 'max:13', 'regex:/^[0-9]*$/', Rule::unique('outlets', 'no_tlp')],
         ]);
 
-        Outlet::create([
-            'name' => $request->name,
-            'alamat' => $request->alamat,
-            'no_tlp' => $request->no_tlp,
-        ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput();
+        } else {
+            Outlet::create([
+                'name' => $request->name,
+                'alamat' => $request->alamat,
+                'no_tlp' => $request->no_tlp,
+            ]);
 
-        session()->flash('success', 'Outlet Add Successfully');
-        return redirect()->route('outlets.add');
+            session()->flash('success', 'Outlet Add Successfully');
+            return redirect()->route('outlets.add');
+        }
     }
 
     public function edit($id): View

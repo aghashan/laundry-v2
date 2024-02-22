@@ -17,6 +17,7 @@
         rel="stylesheet">
 
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Hot Reload --}}
     @vite([])
     {{-- Hot Reload --}}
@@ -29,6 +30,18 @@
         @yield('content')
 
     </div>
+
+    <script>
+        @if (session('error'))
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "{{ session('error') }}",
+                timer: 1500,
+                showConfirmButton: false
+            });
+        @endif
+    </script>
 
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

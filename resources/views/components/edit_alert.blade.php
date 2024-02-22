@@ -10,7 +10,8 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, update it!'
+            confirmButtonText: 'Yes, update it!',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(document.getElementById('editAlert').action, {
@@ -33,15 +34,22 @@
                             window.location.href = redirectTo;
                         });
                     })
-                    .catch(error => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error!',
-                            text: 'Failed to update. Please try again later.',
-                        });
-                        console.error('Error updating:', error);
-                    });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Cancelled!!',
+                    text: 'Your action has been cancelled',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
+        }).catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Failed to update. Please try again later.',
+            });
+            console.error('Error updating:', error);
         });
     }
 </script>
