@@ -15,16 +15,19 @@
                     <div class="mb-4">
                         <label for="name" class="form-label fw-bold">Name</label>
                         <input type="text" class="form-control" name="name" id="name">
+                        <x-error_message field="name" />
                     </div>
 
                     <div class="mb-4">
                         <label for="name" class="form-label fw-bold">Alamat</label>
                         <input type="text" class="form-control" name="alamat" id="alamat">
+                        <x-error_message field="alamat" />
                     </div>
 
                     <div class="mb-4">
                         <label for="name" class="form-label fw-bold">No Telepon</label>
-                        <input type="number" class="form-control" name="no_tlp" id="no_tlp">
+                        <input type="number" class="form-control" name="no_tlp" id="no_tlp">\
+                        <x-error_message field="no_tlp" />
                     </div>
 
                     <x-submit_button></x-submit_button>

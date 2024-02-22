@@ -29,7 +29,8 @@ class StatusController extends Controller
             'name' => $request->name,
         ]);
 
-        return view('/content/status/add')->with(['success' => 'Status add successfully']);
+        session()->flash('success','Status add successfully');
+        return redirect()->route('statuses.add');
     }
 
     public function edit($id): View

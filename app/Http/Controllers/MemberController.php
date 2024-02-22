@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -34,7 +33,8 @@ class MemberController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return view('/content/member/add')->with(['success' => 'Member add successfully']);
+        session()->flash('success', 'Member add successfully');
+        return redirect()->route('members.add');
     }
 
     public function edit($id): View
@@ -60,7 +60,7 @@ class MemberController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return response()->json(['success'=>'Member updated successfully']);
+        return response()->json(['success' => 'Member updated successfully']);
     }
 
     public function destroy($id)

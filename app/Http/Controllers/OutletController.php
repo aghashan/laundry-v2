@@ -34,7 +34,8 @@ class OutletController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return view('/content/outlet/add')->with(['success' => 'Outlet add successfully']);
+        session()->flash('success', 'Outlet Add Successfully');
+        return redirect()->route('outlets.add');
     }
 
     public function edit($id): View

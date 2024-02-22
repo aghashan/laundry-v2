@@ -38,7 +38,8 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
 
-        return view('/content/user/add')->with(['success' => 'User add successfully']);
+        session()->flash('success', 'User add successfully');
+        return redirect()->route('users.add');
     }
 
     public function edit($id): View

@@ -15,6 +15,7 @@
                     <div class="mb-4">
                         <label for="name" class="form-label fw-bold">Name</label>
                         <input type="text" class="form-control" name="name" id="name">
+                        <x-error_message field="name" />
                     </div>
 
                     <div class="mb-4">
@@ -25,6 +26,7 @@
                                 <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
                             @endforeach
                         </select>
+                        <x-error_message field="outled_id" />
                     </div>
 
                     <div class="mb-4">

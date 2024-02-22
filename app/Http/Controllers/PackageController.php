@@ -24,8 +24,6 @@ class PackageController extends Controller
     public function store(Request $request)
     {
 
-        $categories = Category::all();
-
         $this->validate($request, [
             'name' => 'required',
             'category_id' => 'required',
@@ -42,7 +40,8 @@ class PackageController extends Controller
             'min_order' => $request->min_order,
         ]);
 
-        return view('/content/package/add', compact('categories'))->with(['success' => 'Package add successfully']);
+        session()->flash('success','Package add successfully');
+        return redirect()->route('packages.add');
     }
 
     public function edit($id): View

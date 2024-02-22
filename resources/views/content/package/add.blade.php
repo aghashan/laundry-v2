@@ -15,6 +15,7 @@
                     <div class="mb-4">
                         <label for="name" class="form-label font-weight-bold">Name</label>
                         <input type="text" class="form-control" name="name" id="name">
+                        <x-error_message field="name" />
                     </div>
 
                     <div class="mb-4">
@@ -25,21 +26,25 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
+                        <x-error_message field="category_id" />
                     </div>
 
                     <div class="mb-4">
                         <label for="name" class="form-label font-weight-bold">Harga</label>
-                        <input type="text" class="form-control" name="harga" id="name">
+                        <input type="text" class="form-control" name="harga" id="harga">
+                        <x-error_message field="name" />
                     </div>
 
                     <div class="mb-4">
                         <label for="name" class="form-label font-weight-bold">Durasi</label>
-                        <input type="text" class="form-control" name="durasi" id="name">
+                        <input type="text" class="form-control" name="durasi" id="durasi">
+                        <x-error_message field="durasi" />
                     </div>
 
                     <div class="mb-4">
                         <label for="name" class="form-label font-weight-bold">Minimal Order</label>
-                        <input type="text" class="form-control" name="min_order" id="name">
+                        <input type="text" class="form-control" name="min_order" id="min_order">
+                        <x-error_message field="min_order" />
                     </div>
 
                     <x-submit_button></x-submit_button>

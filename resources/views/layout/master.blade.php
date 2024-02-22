@@ -53,8 +53,8 @@
 
     {{-- blade sweataler2 --}}
     <x-delete_alert></x-delete_alert>
-    @if (isset($success))
-        <x-success_alert>{{ $success }}</x-success_alert>
+    @if (session('success'))
+        <x-success_alert>{{ session('success') }}</x-success_alert>
     @endif
     <x-edit_alert></x-edit_alert>
     {{-- blade sweataler2 --}}

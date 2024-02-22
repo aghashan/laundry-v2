@@ -29,8 +29,10 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-        // return response()->json(['success' => 'Category add successfully']);
-        return view('/content/category/add')->with(['success' => 'Category Add Successfully!!']);
+        // return view('/content/category/add')->with(['success' => 'Category Add Successfully!!']);
+
+        session()->flash('success', 'Category Add Successfully!!');
+        return redirect()->route('categories.add');
 
     }
 
