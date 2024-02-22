@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Outlet;
 use App\Models\User;
 
 class DashboardController extends Controller
@@ -11,7 +12,8 @@ class DashboardController extends Controller
     {
         $member = Member::all()->count();
         $user = User::all()->count();
+        $outlet = Outlet::all()->count();
 
-        return view('/content/dashboard', compact('member','user'));
+        return view('/content/dashboard', compact('member','user','outlet'));
     }
 }

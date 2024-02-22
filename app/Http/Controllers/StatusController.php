@@ -29,7 +29,7 @@ class StatusController extends Controller
             'name' => $request->name,
         ]);
 
-        return response()->json(['success' => 'Status add successfully']);
+        return view('/content/status/add')->with(['success' => 'Status add successfully']);
     }
 
     public function edit($id): View
@@ -57,6 +57,6 @@ class StatusController extends Controller
     public function destroy($id)
     {
         Status::find($id)->delete();
-        return response()->json(['success' => 'Status deleted successfully']);
+        return redirect()->route('statuses.index');
     }
 }

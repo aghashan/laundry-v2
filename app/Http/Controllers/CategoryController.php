@@ -29,7 +29,8 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-        return response()->json(['success' => 'Category add successfully']);
+        // return response()->json(['success' => 'Category add successfully']);
+        return view('/content/category/add')->with(['success' => 'Category Add Successfully!!']);
 
     }
 
@@ -58,7 +59,6 @@ class CategoryController extends Controller
     {
         Category::find($id)->delete();
 
-        return response()->json(['success' => 'Category deleted successfully']);
-
+        return redirect()->route('categories.index')->with(['success' => 'Delete Category Berhasil!!']);
     }
 }

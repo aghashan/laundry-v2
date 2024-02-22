@@ -34,7 +34,7 @@ class MemberController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return response()->json(['success' => 'Member add successfully']);
+        return view('/content/member/add')->with(['success' => 'Member add successfully']);
     }
 
     public function edit($id): View
@@ -67,6 +67,6 @@ class MemberController extends Controller
     {
         Member::find($id)->delete();
 
-        return response()->json(['success' => 'Member deleted successfully']);
+        return redirect()->route('members.index');
     }
 }

@@ -19,6 +19,7 @@
 
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Hot Reload --}}
     @vite([])
     {{-- Hot Reload --}}
@@ -52,7 +53,9 @@
 
     {{-- blade sweataler2 --}}
     <x-delete_alert></x-delete_alert>
-    <x-success_alert></x-success_alert>
+    @if (isset($success))
+        <x-success_alert>{{ $success }}</x-success_alert>
+    @endif
     <x-edit_alert></x-edit_alert>
     {{-- blade sweataler2 --}}
 
@@ -67,8 +70,6 @@
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="/js/demo/datatables-demo.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

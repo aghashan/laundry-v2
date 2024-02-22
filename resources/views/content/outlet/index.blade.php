@@ -31,10 +31,7 @@
                                 <td>{{ $outlet->no_tlp }}</td>
                                 <td>
                                     <x-edit_button>{{ route('outlets.edit', $outlet->id) }}</x-edit_button>
-                                    <x-delete_button>deleteConfirmation({{ $outlet->id }},
-                                        '{{ route('outlets.destroy', 'REPLACE_ID') }}',
-                                        '{{ route('outlets.index') }}')
-                                    </x-delete_button>
+                                    <x-delete_button>deleteConfirmation('{{ route('outlets.destroy', $outlet->id) }}')</x-delete_button>
                                 </td>
                             </tr>
                         @endforeach

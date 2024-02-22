@@ -23,6 +23,9 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
+
+        $categories = Category::all();
+
         $this->validate($request, [
             'name' => 'required',
             'category_id' => 'required',
@@ -39,7 +42,7 @@ class PackageController extends Controller
             'min_order' => $request->min_order,
         ]);
 
-        return response()->json(['success' => 'Package add successfully']);
+        return view('/content/package/add', compact('categories'))->with(['success' => 'Package add successfully']);
     }
 
     public function edit($id): View
@@ -76,6 +79,6 @@ class PackageController extends Controller
     {
         Package::find($id)->delete();
 
-        return response()->json(['success' => 'Package deleted successfully']);
+        return redirect()->route('packages.index');
     }
 }

@@ -38,7 +38,7 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
 
-        return response()->json(['success' => 'User add successfully']);
+        return view('/content/user/add')->with(['success' => 'User add successfully']);
     }
 
     public function edit($id): View
@@ -73,6 +73,6 @@ class UserController extends Controller
     {
         User::find($id)->delete();
 
-        return response()->json(['success' => 'User deleted successfully']);
+        return redirect()->route('users.index');
     }
 }

@@ -34,7 +34,7 @@ class OutletController extends Controller
             'no_tlp' => $request->no_tlp,
         ]);
 
-        return response()->json(['success' => 'Outlet add successfully']);
+        return view('/content/outlet/add')->with(['success' => 'Outlet add successfully']);
     }
 
     public function edit($id): View
@@ -67,6 +67,6 @@ class OutletController extends Controller
     {
         Outlet::find($id)->delete();
 
-        return response()->json(['success' => 'Outlet deleted successfully']);
+        return redirect()->route('outlets.index');
     }
 }

@@ -35,10 +35,7 @@
                                 <td>{{ $package->min_order }}</td>
                                 <td>
                                     <x-edit_button>{{ route('packages.edit', $package->id) }}</x-edit_button>
-                                    <x-delete_button>deleteConfirmation({{ $package->id }},
-                                        '{{ route('packages.destroy', 'REPLACE_ID') }}',
-                                        '{{ route('packages.index') }}')
-                                    </x-delete_button>
+                                    <x-delete_button>deleteConfirmation('{{ route('packages.destroy', $package->id) }}')</x-delete_button>
                                 </td>
                             </tr>
                         @endforeach
